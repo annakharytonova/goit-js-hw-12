@@ -22,6 +22,7 @@ let searchWord = '';
 
 async function handleSubmit(event) {
   event.preventDefault();
+  clearGallery();
   searchWord = input.value.trim();
 
   if (!searchWord.trim()) {
@@ -113,5 +114,11 @@ function hideLoading() {
   const loader = document.querySelector('.loader');
   if (loader) {
     loader.classList.add('is-hidden');
+  }
+}
+
+function clearGallery() {
+  if (gallery) {
+    gallery.innerHTML = '';
   }
 }

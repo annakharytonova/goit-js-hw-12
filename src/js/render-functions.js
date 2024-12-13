@@ -2,6 +2,12 @@ export function createMarkup(arr) {
   const gallery = document.querySelector('.gallery-list');
   if (!gallery) {
     console.error('Gallery element not found in the DOM.');
+    iziToast.error({
+      title: 'Error',
+      message: 'Gallery element not found in the DOM.',
+      position: 'topRight',
+      backgroundColor: '#cd0d0d',
+    });
     return;
   }
 
@@ -18,7 +24,7 @@ export function createMarkup(arr) {
       }) => {
         return `<li class="gallery-item">
         <a href="${largeImageURL}" class="gallery-link">
-          <img src="${webformatURL}" alt="${tags}" width="360px" loading="lazy" />
+          <img src="${webformatURL}" alt="${tags}" loading="lazy" />
         </a>
         <div class="info">
           <div class="info-item">
