@@ -52,6 +52,7 @@ async function handleClick() {
 }
 
 async function serviceImage() {
+  buttonLoadMore.classList.add('button-is-hidden');
   try {
     showLoading();
     const data = await searchImages(searchWord, page, per_page);
@@ -64,6 +65,7 @@ async function serviceImage() {
         message:
           'Sorry, there are no images matching your search query. Please, try again!',
       });
+      buttonLoadMore.classList.add('button-is-hidden');
       return;
     }
 
@@ -91,6 +93,7 @@ async function serviceImage() {
       position: 'topRight',
       backgroundColor: '#cd0d0d',
     });
+    buttonLoadMore.classList.add('button-is-hidden');
   } finally {
     hideLoading();
   }
