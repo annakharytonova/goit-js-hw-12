@@ -36,11 +36,15 @@ async function handleSubmit(event) {
   }
   page = 1;
   buttonLoadMore.classList.remove('button-is-hidden');
+  showLoading();
   await serviceImage();
+  hideLoading();
 }
 
 async function handleClick() {
+  showLoading();
   await serviceImage();
+  hideLoading();
   const heightImg = gallery
     .querySelector('.gallery-item')
     .getBoundingClientRect().height;
@@ -55,6 +59,7 @@ async function serviceImage() {
   buttonLoadMore.classList.add('button-is-hidden');
   try {
     showLoading();
+    // throw new Error('Custom error message');
     const data = await searchImages(searchWord, page, per_page);
 
     if (data.hits.length === 0) {
@@ -87,6 +92,7 @@ async function serviceImage() {
     }
     page += 1;
   } catch (error) {
+    showLoading();
     iziToast.error({
       title: 'Error',
       message: 'Failed to load images. Please try again later.',
@@ -125,3 +131,8 @@ function clearGallery() {
     gallery.innerHTML = '';
   }
 }
+
+console.log(
+  'Loader visibility:',
+  loader.classList.contains('is-hidden') ? 'Hidden' : 'Visible'
+);
